@@ -1,6 +1,4 @@
-# Mark Picture
-
-## 2222
+# Custom Button 组件使用说明
 
 ```vue-run
 <template>

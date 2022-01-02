@@ -35,7 +35,7 @@ module.exports = {
       }
     },
     resolveLoader: {
-      modules: ['node_modules','./loaders/']
+      modules: ['node_modules', './loaders']
     }
   },
   chainWebpack: (config) => { 
@@ -47,7 +47,8 @@ module.exports = {
       .loader("vue-loader")
       .end()
       // 自定义loader
-      .use("own-md-loader")
+      .use("vue-markdown-loader")
+      // .loader("@fwx/vue-markdown-loader")
       .loader("own-md-loader")
       .end();
   }

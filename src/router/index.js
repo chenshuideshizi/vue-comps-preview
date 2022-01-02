@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const asyncRouteFiles = require.context('./async-modules', false, /\.js$/)
 const asyncRoutes = asyncRouteFiles.keys().reduce((acc, key) => acc.concat(asyncRouteFiles(key).default), [])
-
+console.log('asyncRoutes', asyncRoutes)
 const routes = [
   {
     path: '/',
@@ -16,18 +16,15 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  // ...asyncRoutes
-  {
-    path: '/mark-picture-readme',
-    name: 'MarkPicture',
-    // component: () => import(/* webpackChunkName: "mark-picture" */ '../custom-components/mark-picture/README.md') // TODO: 使用 import 会进入 loader 多次
-    component: resolve => require(['../custom-components/mark-picture/README.md'],resolve) 
-  }
+  ...asyncRoutes
+  // {
+  //   path: '/mark-picture-readme',
+  //   name: 'MarkPicture',
+  //   // component: () => import(/* webpackChunkName: "mark-picture" */ '../custom-components/mark-picture/README.md') // TODO: 使用 import 会进入 loader 多次
+  //   component: resolve => require(['../custom-components/mark-picture/README.md'],resolve) 
+  // }
 ]
 
 console.log('allRoutes', routes)
